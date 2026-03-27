@@ -5,7 +5,21 @@
     <meta name="referrer" content="unsafe-url">
     <title>Gestión de Productos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/estilos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/formularios.css"> </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/formularios.css"> 
+    
+    <style>
+        /* Estilos específicos para los mensajes de error de validación */
+        label.error {
+            color: #e74c3c;
+            font-size: 0.85em;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+        input.error {
+            border: 2px solid #e74c3c;
+        }
+    </style>
+</head>
 <body>
     <header>
         <h1>Gestión de Inventario</h1>
@@ -17,21 +31,21 @@
     <main>
         <h2>Altas, Modificaciones y Eliminación</h2>
         
-        <form action="#" method="POST">
+        <form id="formularioGestion" action="#" method="POST">
             <fieldset>
                 <legend>Datos del Libro/Producto</legend>
                 
                 <label for="id_producto">ID o ISBN:</label>
-                <input type="text" id="id_producto" name="id_producto" required>
+                <input type="text" id="id_producto" name="id_producto">
 
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input type="text" id="titulo" name="titulo">
 
                 <label for="autor">Autor:</label>
                 <input type="text" id="autor" name="autor">
 
                 <label for="precio">Precio ($):</label>
-                <input type="number" id="precio" name="precio" step="1">
+                <input type="number" id="precio" name="precio" step="0.01">
 
                 <label for="accion">Acción a realizar:</label>
                 <select id="accion" name="accion">
@@ -56,5 +70,42 @@
             <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
         </a>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Aplicar validación del lado del cliente
+            $("#formularioGestion").validate({
+                rules: {
+                    id_producto: { required: true, minlength: 4 },
+                    titulo: { required: true, minlength: 2 },
+                    autor: { required: true },
+                    precio: { required: true, number: true, min: 1 }
+                },
+                messages: {
+                    id_producto: {
+                        required: "El ID o ISBN es obligatorio.",
+                        minlength: "Debe tener al menos 4 caracteres."
+                    },
+                    titulo: {
+                        required: "Por favor, ingresa el título.",
+                        minlength: "El título es muy corto."
+                    },
+                    autor: "El autor es obligatorio.",
+                    precio: {
+                        required: "Ingresa un precio.",
+                        number: "Por favor ingresa un número válido.",
+                        min: "El precio debe ser mayor a 0."
+                    }
+                },
+                submitHandler: function(form) {
+                    alert("¡Validación exitosa! Listo para enviar a la BD.");
+                    // form.submit(); // En un entorno real, esto enviaría el form
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -5,6 +5,26 @@
     <meta name="referrer" content="unsafe-url">
     <title>Librería BiblioTec</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/estilos.css">
+    
+    <style>
+        .bienvenida-caja {
+            background-color: #1abc9c;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none; /* Oculto inicialmente para mostrarlo con JS */
+        }
+        #btn-magia {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,13 +39,14 @@
         <a href="vision.html">Visión</a> |
         <a href="catalogo.html">Catálogo</a> |
         <a href="contacto.html">Contacto</a> |
-        <a href="gestion.html">Gestión de Productos</a> </nav>
+        <a href="gestion.html">Gestión de Productos</a> 
+    </nav>
 
     <hr>
 
-    <main>
+    <main id="contenido-principal">
         <p>Bienvenido al sitio web de BiblioTec. Tu librería de confianza.</p>
-    </main>
+        </main>
 
     <footer>
         <hr>
@@ -40,5 +61,20 @@
         </a>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Elemento dinámico y Evento (Paso 1)
+            let boton = '<button id="btn-magia">Descubre nuestra oferta</button>';
+            let caja = '<div class="bienvenida-caja">¡Hoy tenemos 20% de descuento en novelas clásicas!</div>';
+            
+            $("#contenido-principal").append(boton).append(caja);
+
+            // Evento click
+            $("#btn-magia").click(function(){
+                $(".bienvenida-caja").slideToggle("fast");
+            });
+        });
+    </script>
 </body>
 </html>
