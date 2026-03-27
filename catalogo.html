@@ -4,23 +4,50 @@
     <meta charset="UTF-8">
     <meta name="referrer" content="unsafe-url">
     <title>Catálogo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
     
     <style>
+        #galeria-libros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
         .libro-item {
-            display: inline-block;
-            margin: 20px;
-            padding: 15px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .libro-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
         }
         .libro-item img {
-            border-radius: 5px;
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
         }
-        .libro-item img:hover {
-            transform: scale(1.05);
+        .libro-item h2 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .libro-item p {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 0;
         }
     </style>
 </head>
@@ -32,38 +59,37 @@
 </header>
 
 <nav>
-        <a href="index.html">Inicio</a> |
-        <a href="mision.html">Misión</a> |
-        <a href="vision.html">Visión</a> |
-        <a href="catalogo.html">Catálogo</a> |
-        <a href="contacto.html">Contacto</a> |
+        <a href="index.html">Inicio</a>
+        <a href="mision.html">Misión</a>
+        <a href="vision.html">Visión</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
         <a href="gestion.html">Gestión de Productos</a> 
 </nav>
 
-<hr>
+<main>
+    <div id="galeria-libros" style="display: none;">
+        <div class="libro-item">
+            <h2>Libro 1</h2>
+            <img src="img/libro1.jpeg" width="200" alt="Portada de Cuento de Navidad">
+            <p>"Cuento de Navidad" - Charles Dickens</p>
+        </div>
 
-<main id="galeria-libros" style="display: none;">
-    <div class="libro-item">
-        <h2>Libro 1</h2>
-        <img src="img/libro1.jpeg" width="200" alt="Portada de Cuento de Navidad">
-        <p>"Cuento de Navidad" - Charles Dickens</p>
-    </div>
+        <div class="libro-item">
+            <h2>Libro 2</h2>
+            <img src="img/libro2.jpeg" width="200" alt="Portada de Tierra de Lágrimas">
+            <p>"Tierra de Lágrimas" - Kathleen Grissom</p>
+        </div>
 
-    <div class="libro-item">
-        <h2>Libro 2</h2>
-        <img src="img/libro2.jpeg" width="200" alt="Portada de Tierra de Lágrimas">
-        <p>"Tierra de Lágrimas" - Kathleen Grissom</p>
-    </div>
-
-    <div class="libro-item">
-        <h2>Libro 3</h2>
-        <img src="img/libro3.jpeg" width="200" alt="Portada de Orgullo y Prejuicio">
-        <p>"Orgullo y Prejuicio" - Jane Austen</p>
+        <div class="libro-item">
+            <h2>Libro 3</h2>
+            <img src="img/libro3.jpeg" width="200" alt="Portada de Orgullo y Prejuicio">
+            <p>"Orgullo y Prejuicio" - Jane Austen</p>
+        </div>
     </div>
 </main>
 
 <footer>
-    <hr>
     <p>&copy; 2026 BiblioTec.</p>
     
     <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/catalogo.html" target="_blank">
