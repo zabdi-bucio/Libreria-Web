@@ -13,7 +13,7 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            display: none; /* Oculto inicialmente para mostrarlo con JS */
+            display: none;
         }
         #btn-magia {
             background-color: #e74c3c;
@@ -23,6 +23,10 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
+            font-size: 16px;
+        }
+        #btn-magia:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
@@ -46,7 +50,7 @@
 
     <main id="contenido-principal">
         <p>Bienvenido al sitio web de BiblioTec. Tu librería de confianza.</p>
-        </main>
+    </main>
 
     <footer>
         <hr>
@@ -64,13 +68,11 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            // Elemento dinámico y Evento (Paso 1)
-            let boton = '<button id="btn-magia">Descubre nuestra oferta</button>';
-            let caja = '<div class="bienvenida-caja">¡Hoy tenemos 20% de descuento en novelas clásicas!</div>';
+            let boton = '<button id="btn-magia">Descubre nuestra oferta de hoy</button>';
+            let caja = '<div class="bienvenida-caja">¡Hoy tenemos 20% de descuento en todos los libros de programación!</div>';
             
             $("#contenido-principal").append(boton).append(caja);
 
-            // Evento click
             $("#btn-magia").click(function(){
                 $(".bienvenida-caja").slideToggle("fast");
             });

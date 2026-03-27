@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="referrer" content="unsafe-url">
-	<title>Contacto</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/estilos.css">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/estilos.css">
+    
+    <style>
+        .info-contacto {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            text-align: left;
+        }
+        .info-contacto p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
@@ -20,15 +35,19 @@
         <a href="vision.html">Visión</a> |
         <a href="catalogo.html">Catálogo</a> |
         <a href="contacto.html">Contacto</a> |
-        <a href="gestion.html">Gestión de Productos</a> </nav>
-
-    <hr>
+        <a href="gestion.html">Gestión de Productos</a> 
+</nav>
 
 <hr>
 
-<p>Email: contacto@BiblioTec.com</p>
-<p>Teléfono: 425-128-7122</p>
-<p>Dirección: Calle 10 de abril 12, Tancítaro, Mich.</p>
+<main id="contenido-contacto" style="display: none;">
+    <div class="info-contacto">
+        <p><strong>Email:</strong> contacto@BiblioTec.com</p>
+        <p><strong>Teléfono:</strong> 425-128-7122</p>
+        <p><strong>Dirección:</strong> Calle 10 de abril 12, Tancítaro, Mich.</p>
+    </div>
+</main>
+
 <footer>
         <hr>
         <p>&copy; 2026 BiblioTec.</p>
@@ -41,6 +60,13 @@
             <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
         </a>
 </footer>
-</body>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#contenido-contacto").slideDown(800);
+    });
+</script>
+
+</body>
 </html>

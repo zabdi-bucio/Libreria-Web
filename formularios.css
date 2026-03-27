@@ -31,7 +31,7 @@ input, select {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Evita que se salgan del contenedor */
+    box-sizing: border-box;
 }
 
 button {

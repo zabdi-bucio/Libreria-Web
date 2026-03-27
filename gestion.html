@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zabdi-bucio/Libreria-Web/formularios.css"> 
     
     <style>
-        /* Estilos específicos para los mensajes de error de validación */
         label.error {
             color: #e74c3c;
             font-size: 0.85em;
@@ -17,6 +16,7 @@
         }
         input.error {
             border: 2px solid #e74c3c;
+            background-color: #fadbd8;
         }
     </style>
 </head>
@@ -76,7 +76,6 @@
     
     <script>
         $(document).ready(function() {
-            // Aplicar validación del lado del cliente
             $("#formularioGestion").validate({
                 rules: {
                     id_producto: { required: true, minlength: 4 },
@@ -101,8 +100,7 @@
                     }
                 },
                 submitHandler: function(form) {
-                    alert("¡Validación exitosa! Listo para enviar a la BD.");
-                    // form.submit(); // En un entorno real, esto enviaría el form
+                    alert("¡Validación exitosa! Código listo para procesarse.");
                 }
             });
         });
