@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="unsafe-url">
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="estilos.css">
+    
+    <style>
+        #galeria-libros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .libro-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .libro-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .libro-item img {
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+        }
+        .libro-item h2 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .libro-item p {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+        <h1>Catálogo de Libros</h1>
+        <img src="img/logo.png" width="200" alt="Logo BiblioTec">
+</header>
+
+<nav>
+        <a href="index.html">Inicio</a>
+        <a href="mision.html">Misión</a>
+        <a href="vision.html">Visión</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="gestion.html">Gestión de Productos</a> 
+</nav>
+
+<main>
+    <div id="galeria-libros" style="display: none;">
+        <div class="libro-item">
+            <h2>Libro 1</h2>
+            <img src="img/libro1.jpeg" width="200" alt="Portada de Cuento de Navidad">
+            <p>"Cuento de Navidad" - Charles Dickens</p>
+        </div>
+
+        <div class="libro-item">
+            <h2>Libro 2</h2>
+            <img src="img/libro2.jpeg" width="200" alt="Portada de Tierra de Lágrimas">
+            <p>"Tierra de Lágrimas" - Kathleen Grissom</p>
+        </div>
+
+        <div class="libro-item">
+            <h2>Libro 3</h2>
+            <img src="img/libro3.jpeg" width="200" alt="Portada de Orgullo y Prejuicio">
+            <p>"Orgullo y Prejuicio" - Jane Austen</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 BiblioTec.</p>
+    
+    <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/catalogo.html" target="_blank">
+        <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
+    </a>
+
+    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/catalogo.html" target="_blank">
+        <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
+    </a>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#galeria-libros").fadeIn(1200);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="unsafe-url">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="estilos.css">
+    
+    <style>
+        .info-contacto {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            margin: 30px auto;
+            text-align: left;
+            max-width: 500px;
+            width: 100%;
+            border-top: 5px solid #1abc9c;
+        }
+        .info-contacto p {
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-contacto strong {
+            color: #2c3e50;
+            min-width: 90px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+        <h1>Contacto</h1>
+        <img src="img/logo.png" width="200" alt="Logo BiblioTec">
+</header>
+
+<nav>
+        <a href="index.html">Inicio</a>
+        <a href="mision.html">Misión</a>
+        <a href="vision.html">Visión</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="gestion.html">Gestión de Productos</a> 
+</nav>
+
+<main>
+    <div id="contenido-contacto" style="display: none;">
+        <h2>¡Estamos para servirte!</h2>
+        <div class="info-contacto">
+            <p><strong>Email:</strong> contacto@BiblioTec.com</p>
+            <p><strong>Teléfono:</strong> 425-128-7122</p>
+            <p><strong>Dirección:</strong> Calle 10 de abril 12, Tancítaro, Mich.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+        <p>&copy; 2026 BiblioTec.</p>
+        
+        <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/contacto.html" target="_blank">
+            <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
+        </a>
+
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/contacto.html" target="_blank">
+            <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
+        </a>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#contenido-contacto").slideDown(800);
+    });
+</script>
+
+</body>
+</html>
