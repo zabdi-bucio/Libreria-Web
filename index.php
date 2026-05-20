@@ -1,4 +1,4 @@
-<?php require_once 'config/nav.php'; ?>
+<?php require_once 'config/sesion.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,39 +34,38 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>Librería BiblioTec</h1>
+        <img src="img/logo.png" width="200" alt="Logo BiblioTec">
+    </header>
 
-<header>
-    <h1>Librería BiblioTec</h1>
-    <img src="img/logo.png" width="200" alt="Logo BiblioTec">
-</header>
+    <?php require_once 'config/nav.php'; ?>
 
-<?php /* El nav ya viene incluido arriba desde config/nav.php */ ?>
+    <main id="contenido-principal">
+        <h2>Tu librería de confianza</h2>
+        <p>Bienvenido al sitio web de BiblioTec. Explora nuestro catálogo y descubre mundos increíbles.</p>
+    </main>
 
-<main id="contenido-principal">
-    <h2>Tu librería de confianza</h2>
-    <p>Bienvenido al sitio web de BiblioTec. Explora nuestro catálogo y descubre mundos increíbles.</p>
-</main>
+    <footer>
+        <p>&copy; 2026 BiblioTec.</p>
+        <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/index.php" target="_blank">
+            <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
+        </a>
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/estilos.css" target="_blank">
+            <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
+        </a>
+    </footer>
 
-<footer>
-    <p>&copy; 2026 BiblioTec.</p>
-    <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/index.php" target="_blank">
-        <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
-    </a>
-    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/index.php" target="_blank">
-        <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
-    </a>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-        let boton = '<button id="btn-magia">Descubre nuestra oferta de hoy</button>';
-        let caja  = '<div class="bienvenida-caja">¡Hoy tenemos 20% de descuento en todos los libros de programación!</div>';
-        $("#contenido-principal").append(boton).append(caja);
-        $("#btn-magia").click(function(){
-            $(".bienvenida-caja").slideToggle("fast");
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let boton = '<button id="btn-magia">Descubre nuestra oferta de hoy</button>';
+            let caja  = '<div class="bienvenida-caja">¡Hoy tenemos 20% de descuento en todos los libros de programación!</div>';
+            $("#contenido-principal").append(boton).append(caja);
+            $("#btn-magia").click(function(){
+                $(".bienvenida-caja").slideToggle("fast");
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

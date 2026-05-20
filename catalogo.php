@@ -1,110 +1,116 @@
 <?php
-// catalogo.php
-// ============================================================
-// Catálogo de Libros - Datos desde la Base de Datos (Paso 1)
-// ============================================================
 require_once 'config/conexion.php';
 require_once 'config/sesion.php';
 
-$pdo    = Conexion::obtenerInstancia()->getPDO();
+$pdo = Conexion::obtenerInstancia()->getPDO();
 $libros = $pdo->query(
-    "SELECT isbn, titulo, autor, precio FROM libros WHERE activo=1 ORDER BY titulo"
+    "SELECT id, titulo, descripcion, precio, stock FROM libros WHERE activo=1 ORDER BY id ASC"
 )->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="referrer" content="unsafe-url">
-    <title>Catálogo</title>
+    <title>Catálogo - BiblioTec</title>
     <link rel="stylesheet" href="estilos.css">
     <style>
         #galeria-libros {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             padding: 20px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
         }
         .libro-item {
             background-color: white;
             border-radius: 12px;
-            padding: 20px;
+            overflow: hidden;
             box-shadow: 0 6px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+            text-align: center;
         }
         .libro-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 12px 20px rgba(0,0,0,0.1);
         }
         .libro-item img {
-            border-radius: 8px;
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid #f0f4f8;
         }
-        .libro-item h2 { font-size:1.2em; color:#2c3e50; margin-bottom:5px; }
-        .libro-item p  { font-style:italic; color:#7f8c8d; font-size:0.9em; margin:0; }
-        .precio { color:#1abc9c; font-weight:600; font-style:normal !important; margin-top:8px !important; }
+        .libro-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .libro-info h3 { font-size:1.3em; color:#2c3e50; margin:0 0 10px 0; }
+        .libro-info p.desc { color:#7f8c8d; font-size:0.9em; flex-grow:1; text-align:justify; margin-bottom:15px; }
+        .precio { color:#1abc9c; font-weight:bold; font-size: 1.4em; margin:10px 0; }
+        .stock { font-size:0.9em; font-weight:bold; margin-bottom:15px; }
+        .stock.ok { color: #27ae60; }
+        .stock.agotado { color: #e74c3c; }
+        .btn-comprar {
+            background:#1abc9c; color:white; border:none; padding:10px; 
+            border-radius:8px; cursor:pointer; font-weight:bold; width:100%;
+            transition: background 0.3s;
+        }
+        .btn-comprar:hover { background:#16a085; }
     </style>
 </head>
 <body>
-<header>
-    <h1>Catálogo de Libros</h1>
-    <img src="img/logo.png" width="200" alt="Logo BiblioTec">
-</header>
-<nav>
-    <a href="index.php">Inicio</a>
-    <a href="mision.php">Misión</a>
-    <a href="vision.php">Visión</a>
-    <a href="catalogo.php">Catálogo</a>
-    <a href="contacto.php">Contacto</a>
-    <?php if (estaAutenticado()): ?>
-        <a href="gestion.php">Gestión de Productos</a>
-        <a href="logout.php">Cerrar Sesión</a>
-    <?php else: ?>
-        <a href="login.php">Iniciar Sesión</a>
-    <?php endif; ?>
-</nav>
-<main>
-    <div id="galeria-libros" style="display:none;">
-        <?php if (empty($libros)): ?>
-            <p>No hay libros disponibles en este momento.</p>
-        <?php else: ?>
-            <?php foreach ($libros as $i => $libro): ?>
-                <div class="libro-item">
-                    <h2>Libro <?= $i + 1 ?></h2>
-                    <img src="img/libro<?= $i + 1 ?>.jpeg" width="200"
-                         alt="Portada de <?= htmlspecialchars($libro['titulo']) ?>">
-                    <p>"<?= htmlspecialchars($libro['titulo']) ?>" -
-                       <?= htmlspecialchars($libro['autor']) ?></p>
-                    <p class="precio">$<?= number_format($libro['precio'], 2) ?></p>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
-</main>
-<footer>
-    <p>&copy; 2026 BiblioTec.</p>
-    <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/catalogo.php" target="_blank">
-        <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
-    </a>
-    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/catalogo.php" target="_blank">
-        <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
-    </a>
-</footer>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#galeria-libros").fadeIn(1200);
-    });
-</script>
+    <header>
+        <h1>Catálogo de Libros</h1>
+        <img src="img/logo.png" width="200" alt="Logo BiblioTec">
+    </header>
+
+    <?php require_once 'config/nav.php'; ?>
+
+    <main>
+        <div id="galeria-libros" style="display:none;">
+            <?php if (empty($libros)): ?>
+                <p style="text-align:center; width:100%;">No hay libros disponibles en este momento.</p>
+            <?php else: ?>
+                <?php foreach ($libros as $libro): ?>
+                    <div class="libro-item">
+                        <img src="img/libro<?= $libro['id'] ?>.jpeg" 
+                             alt="Portada de <?= htmlspecialchars($libro['titulo']) ?>"
+                             onerror="this.src='img/logo.png'">
+                        
+                        <div class="libro-info">
+                            <span style="font-size:0.8em; color:#bdc3c7;">ID: <?= $libro['id'] ?></span>
+                            <h3><?= htmlspecialchars($libro['titulo']) ?></h3>
+                            <p class="desc"><?= nl2br(htmlspecialchars($libro['descripcion'] ?? 'Sin descripción.')) ?></p>
+                            
+                            <p class="precio">$<?= number_format($libro['precio'], 2) ?></p>
+                            
+                            <?php if ($libro['stock'] > 0): ?>
+                                <p class="stock ok">Disponibles: <?= $libro['stock'] ?></p>
+                                <button class="btn-comprar">Agregar al Carrito</button>
+                            <?php else: ?>
+                                <p class="stock agotado">AGOTADO</p>
+                                <button class="btn-comprar" style="background:#bdc3c7; cursor:not-allowed;" disabled>No disponible</button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 BiblioTec.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#galeria-libros").fadeIn(1000);
+        });
+    </script>
 </body>
 </html>

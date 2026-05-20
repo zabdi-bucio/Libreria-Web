@@ -1,9 +1,4 @@
 <?php
-// registro.php
-// ============================================================
-// Registro de Nuevos Usuarios
-// Paso 2: cifrado de contraseña | Paso 3: AJAX nombre de usuario
-// ============================================================
 require_once 'config/conexion.php';
 require_once 'config/sesion.php';
 
@@ -38,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch()) {
             $error = 'El nombre de usuario o correo ya está registrado.';
         } else {
-            // Cifrar contraseña con bcrypt (Paso 2)
+            // Cifrar contraseña con bcrypt
             $hash = password_hash($pass, PASSWORD_BCRYPT);
 
             $stmt = $pdo->prepare(
@@ -135,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>
 $(document).ready(function(){
 
-    // ---- AJAX: Verificar disponibilidad de nombre de usuario (Paso 3) ----
     let timerNombre;
     $("#nombre_usuario").on("input", function(){
         clearTimeout(timerNombre);

@@ -2,7 +2,6 @@
 // api/usuarios.php
 // ============================================================
 // API AJAX para Usuarios
-// Paso 3 - Práctica Unidad 4
 // ============================================================
 
 header('Content-Type: application/json; charset=utf-8');
@@ -15,7 +14,7 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 $accion = $_GET['accion'] ?? '';
 
 try {
-    // ---- Verificar disponibilidad de nombre de usuario (AJAX Paso 3) ----
+    // ---- Verificar disponibilidad de nombre de usuario----
     if ($metodo === 'GET' && $accion === 'verificar_nombre') {
         $nombre = trim($_GET['nombre_usuario'] ?? '');
         if (strlen($nombre) < 3) {
@@ -33,10 +32,9 @@ try {
     }
 
     // ---- Solo admins pueden gestionar usuarios a partir de aquí ----
-    requiereRol('../index.html', 'admin');
+    requiereRol('../index.php', 'admin');
 
     switch ($metodo) {
-
         // Listar todos los usuarios
         case 'GET':
             $stmt = $pdo->query(

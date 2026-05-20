@@ -1,19 +1,13 @@
 <?php
-// gestion_usuarios.php
-// ============================================================
-// Módulo de Gestión de Usuarios (Paso 2)
-// Solo accesible para administradores
-// ============================================================
 require_once 'config/conexion.php';
 require_once 'config/sesion.php';
 
-requiereRol('index.html', 'admin');
+requiereRol('index.php', 'admin');
 
 $pdo      = Conexion::obtenerInstancia()->getPDO();
 $mensaje  = '';
 $tipoMsg  = '';
 
-// ---- Alta de usuario por el admin ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'alta') {
     $nombre   = trim($_POST['nombre_usuario'] ?? '');
     $email    = trim($_POST['email']          ?? '');
@@ -43,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['accion'] ?? '') === 'alta'
     }
 }
 
-// Obtener lista de usuarios
 $usuarios = $pdo->query(
     "SELECT id, nombre_usuario, email, rol, activo, fecha_registro FROM usuarios ORDER BY id"
 )->fetchAll();
@@ -58,8 +51,7 @@ $usuarios = $pdo->query(
     <link rel="stylesheet" href="formularios.css">
     <style>
         table { width:100%; max-width:900px; margin:20px auto; border-collapse:collapse;
-                background:white; border-radius:10px; overflow:hidden;
-                box-shadow:0 4px 15px rgba(0,0,0,0.08); }
+                background:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
         th { background:#2c3e50; color:white; padding:12px; }
         td { padding:10px; border-bottom:1px solid #eee; text-align:center; }
         tr:hover td { background:#f0f4f8; }
@@ -70,10 +62,8 @@ $usuarios = $pdo->query(
         .badge-inactivo { background:#bdc3c7; color:white; }
         .msg-exito { color:#1abc9c; font-weight:bold; }
         .msg-error { color:#e74c3c; font-weight:bold; }
-        select.rol-select { padding:5px; border-radius:6px; border:2px solid #e0e6ed;
-                            font-family:'Poppins',sans-serif; width:auto; }
-        .btn-baja { background:#e74c3c; color:white; border:none; padding:6px 12px;
-                    border-radius:8px; cursor:pointer; font-size:0.85em; }
+        select.rol-select { padding:5px; border-radius:6px; border:2px solid #e0e6ed; font-family:'Poppins',sans-serif; width:auto; }
+        .btn-baja { background:#e74c3c; color:white; border:none; padding:6px 12px; border-radius:8px; cursor:pointer; font-size:0.85em; }
         .btn-baja:hover { background:#c0392b; }
     </style>
 </head>
@@ -95,7 +85,6 @@ $usuarios = $pdo->query(
         <p class="msg-<?= $tipoMsg ?>"><?= htmlspecialchars($mensaje) ?></p>
     <?php endif; ?>
 
-    <!-- Formulario: Dar de alta usuario -->
     <form action="gestion_usuarios.php" method="POST">
         <input type="hidden" name="accion" value="alta">
         <fieldset>
@@ -121,7 +110,6 @@ $usuarios = $pdo->query(
         </fieldset>
     </form>
 
-    <!-- Tabla de usuarios existentes -->
     <h3>Usuarios Registrados</h3>
     <table>
         <thead>
@@ -137,7 +125,6 @@ $usuarios = $pdo->query(
                 <td><?= htmlspecialchars($u['nombre_usuario']) ?></td>
                 <td><?= htmlspecialchars($u['email']) ?></td>
                 <td>
-                    <!-- Cambio de rol AJAX -->
                     <select class="rol-select" data-id="<?= $u['id'] ?>">
                         <?php foreach (['admin','editor','lector'] as $r): ?>
                             <option value="<?= $r ?>" <?= $u['rol']===$r?'selected':'' ?>>
@@ -166,19 +153,12 @@ $usuarios = $pdo->query(
 </main>
 <footer>
     <p>&copy; 2026 BiblioTec.</p>
-    <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/gestion_usuarios.php" target="_blank">
-        <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
-    </a>
-    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/gestion_usuarios.php" target="_blank">
-        <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
-    </a>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 $(document).ready(function(){
 
-    // ---- AJAX: Cambiar rol de usuario ----
     $(document).on('change', '.rol-select', function(){
         const id  = $(this).data('id');
         const rol = $(this).val();
@@ -187,14 +167,12 @@ $(document).ready(function(){
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({ id, rol }),
-            success: function(resp){
-                alert(resp.mensaje);
-            },
+            success: function(resp){ alert(resp.mensaje); },
+            error: function(xhr){ alert(xhr.responseJSON ? xhr.responseJSON.mensaje : 'Error al cambiar rol.'); },
             dataType: 'json'
         });
     });
 
-    // ---- AJAX: Dar de baja usuario ----
     $(document).on('click', '.btn-baja', function(){
         const id = $(this).data('id');
         if (!confirm('¿Confirmas dar de baja a este usuario?')) return;
@@ -210,6 +188,7 @@ $(document).ready(function(){
                     alert(resp.mensaje);
                 }
             },
+            error: function(xhr){ alert(xhr.responseJSON ? xhr.responseJSON.mensaje : 'Error al dar de baja.'); },
             dataType: 'json'
         });
     });

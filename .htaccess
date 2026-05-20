@@ -1,0 +1,28 @@
+# BiblioTec - Configuración Apache
+Options -Indexes
+
+# Redirigir HTTP a HTTPS (Paso 4 - conexión cifrada)
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Página de inicio por defecto
+DirectoryIndex index.php index.html
+
+# Proteger carpeta config (nunca debe ser accesible públicamente)
+<FilesMatch "^(conexion|sesion|nav)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Deshabilitar acceso directo a config/
+<IfModule mod_rewrite.c>
+    RewriteRule ^config/ - [F,L]
+</IfModule>
+
+# Headers de seguridad
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
