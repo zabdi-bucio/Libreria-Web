@@ -20,23 +20,23 @@ $base_url = '/';
 <?php endif; ?>
 
 <nav>
-    <a href="<?= $base_url ?>index.php">Inicio</a>
-    <a href="<?= $base_url ?>mision.php">Misión</a>
-    <a href="<?= $base_url ?>vision.php">Visión</a>
-    <a href="<?= $base_url ?>catalogo.php">Catálogo</a>
-    <a href="<?= $base_url ?>contacto.php">Contacto</a>
+    <a href="/index.php">Inicio</a>
+    <a href="/mision.php">Misión</a>
+    <a href="/vision.php">Visión</a>
+    <a href="/catalogo.php">Catálogo</a>
+    <a href="/contacto.php">Contacto</a>
 
     <?php if (tieneRol('admin', 'editor')): ?>
-        <a href="<?= $base_url ?>gestion.php">Gestión de Productos</a>
+        <a href="/gestion.php">Gestión de Productos</a>
     <?php endif; ?>
 
     <?php if (tieneRol('admin')): ?>
-        <a href="<?= $base_url ?>gestion_usuarios.php">Usuarios</a>
+        <a href="/gestion_usuarios.php">Usuarios</a>
     <?php endif; ?>
 
     <?php if (estaAutenticado()): ?>
-        <a href="<?= $base_url ?>logout.php">Cerrar Sesión</a>
+        <a href="/logout.php">Cerrar Sesión</a>
     <?php else: ?>
-        <a href="<?= $base_url ?>login.php">Iniciar Sesión</a>
+        <a href="/login.php">Iniciar Sesión</a>
     <?php endif; ?>
 </nav>
