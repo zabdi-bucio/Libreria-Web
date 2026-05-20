@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/sesion.php';
 
-$base_url = '/Libreria-Web/';
+$base_url = '/';
 ?>
 
 <?php if (estaAutenticado()): ?>
