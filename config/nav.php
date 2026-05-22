@@ -1,6 +1,15 @@
 <?php
 require_once __DIR__ . '/sesion.php';
 
+
+$total_carrito = 0;
+
+if (isset($_SESSION['carrito']) && is_array($_SESSION['carrito'])) {
+    foreach ($_SESSION['carrito'] as $item) {
+        $total_carrito += (int)($item['cantidad'] ?? 0);
+    }
+}
+
 $base_url = '/';
 ?>
 
@@ -21,7 +30,12 @@ $base_url = '/';
     <a href="<?= $base_url ?>vision.php">Visión</a>
     <a href="<?= $base_url ?>catalogo.php">Catálogo</a>
     <a href="<?= $base_url ?>contacto.php">Contacto</a>
-    <a href="<?= $base_url ?>carrito.php">Carrito</a>
+    <a href="<?= $base_url ?>carrito.php">
+        Carrito 🛒
+        <?php if ($total_carrito > 0): ?>
+            <span class="carrito-badge"><?= $total_carrito ?></span>
+        <?php endif; ?>
+    </a>
 
     <?php if (tieneRol('admin', 'editor')): ?>
         <a href="<?= $base_url ?>gestion.php">Inventario</a>
