@@ -72,12 +72,7 @@ $usuarios = $pdo->query(
     <h1>Gestión de Usuarios</h1>
     <img src="img/logo.png" width="200" alt="Logo BiblioTec">
 </header>
-<nav>
-    <a href="index.php">Inicio</a>
-    <a href="catalogo.php">Catálogo</a>
-    <a href="gestion.php">Gestión Inventario</a>
-    <a href="logout.php">Cerrar Sesión (<?= htmlspecialchars($_SESSION['nombre_usuario']) ?>)</a>
-</nav>
+<?php require_once 'config/nav.php'; ?>
 <main>
     <h2>Administración de Cuentas</h2>
 

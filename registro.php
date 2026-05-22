@@ -65,15 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Registro de Usuario</h1>
     <img src="img/logo.png" width="200" alt="Logo BiblioTec">
 </header>
-<nav>
-    <a href="index.php">Inicio</a>
-    <a href="mision.php">Misión</a>
-    <a href="vision.php">Visión</a>
-    <a href="catalogo.php">Catálogo</a>
-    <a href="contacto.php">Contacto</a>
-    <a href="login.php">Iniciar Sesión</a>
-    <a href="gestion.php">Gestión de Productos</a> 
-</nav>
+<?php require_once 'config/nav.php'; ?>
 <main>
 
     <?php if ($exito): ?>
@@ -118,10 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 <footer>
     <p>&copy; 2026 BiblioTec.</p>
-    <a href="https://validator.w3.org/nu/?doc=https://zabdi-bucio.github.io/Libreria-Web/registro.php" target="_blank">
+    <a href="https://validator.w3.org/nu/?doc=https://bibliotec-zabdi-gpf2dzb6ekbeb3gp.centralus-01.azurewebsites.net/registro.php" target="_blank">
         <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
     </a>
-    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://zabdi-bucio.github.io/Libreria-Web/registro.php" target="_blank">
+    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://bibliotec-zabdi-gpf2dzb6ekbeb3gp.centralus-01.azurewebsites.net/registro.php" target="_blank">
         <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
     </a>
 </footer>

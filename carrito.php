@@ -88,7 +88,11 @@ $total = 0;
 
 <?php if (empty($carrito)): ?>
 
+    <div class="empty-state">
     <h2>Tu carrito está vacío 🛒</h2>
+    <p>Explora el catálogo y agrega libros para continuar.</p>
+    <a class="btn-link" href="catalogo.php">Ver catálogo</a>
+</div>
 
 <?php else: ?>
 
