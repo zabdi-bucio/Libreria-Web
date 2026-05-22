@@ -184,3 +184,28 @@ hr {
     border-radius: 25px;
     font-weight: 600;
 }
+.footer-global{
+    margin-top:60px;
+    background:#2c3e50;
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+}
+
+.footer-validadores{
+    margin-top:15px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.footer-validadores img{
+    border:0;
+    transition:transform .3s ease;
+}
+
+.footer-validadores img:hover{
+    transform:scale(1.05);
+}

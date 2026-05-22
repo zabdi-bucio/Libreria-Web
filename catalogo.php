@@ -114,9 +114,7 @@ $libros = $pdo->query(
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 BiblioTec.</p>
-    </footer>
+   <?php require_once 'config/footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
