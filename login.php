@@ -67,8 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </fieldset>
         </form>
     </main>
-    <footer>
-        <p>&copy; 2026 BiblioTec.</p>
-    </footer>
+    <?php require_once 'config/footer.php'; ?>
 </body>
 </html>

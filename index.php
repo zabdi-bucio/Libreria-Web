@@ -46,15 +46,7 @@
         <p>Bienvenido al sitio web de BiblioTec. Explora nuestro catálogo y descubre mundos increíbles.</p>
     </main>
 
-    <footer>
-        <p>&copy; 2026 BiblioTec.</p>
-        <a href="https://validator.w3.org/nu/?doc=https://bibliotec-zabdi-gpf2dzb6ekbeb3gp.centralus-01.azurewebsites.net/index.php" target="_blank">
-            <img src="img/valid_HTML5.png" alt="¡HTML 5 Válido!" height="31" width="88" style="border:0;">
-        </a>
-        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://bibliotec-zabdi-gpf2dzb6ekbeb3gp.centralus-01.azurewebsites.net/estilos.css" target="_blank">
-            <img src="img/valid_CSS.png" alt="¡CSS Válido!" height="31" width="88" style="border:0;">
-        </a>
-    </footer>
+    <?php require_once 'config/footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>

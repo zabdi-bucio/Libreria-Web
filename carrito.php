@@ -139,6 +139,7 @@ $total = 0;
 <?php endif; ?>
 
 </main>
+<?php require_once 'config/footer.php'; ?>
 
 </body>
 </html>
