@@ -165,3 +165,22 @@ hr {
     min-width: 18px;
     text-align: center;
 }
+.empty-state {
+    background: white;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.btn-link {
+    display: inline-block;
+    margin-top: 15px;
+    background: #1abc9c;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+}
