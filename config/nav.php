@@ -5,38 +5,34 @@ $base_url = '/';
 ?>
 
 <?php if (estaAutenticado()): ?>
-<div style="background:#1abc9c;color:white;padding:8px 20px;font-size:0.85em;
-            display:flex;justify-content:space-between;align-items:center;">
+<div class="topbar">
     <span>
-         <strong><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></strong>
+        Sesión: <strong><?= htmlspecialchars($_SESSION['nombre_usuario']) ?></strong>
         &nbsp;|&nbsp;
         Rol: <strong><?= htmlspecialchars(ucfirst($_SESSION['rol'])) ?></strong>
     </span>
-    <a href="<?= $base_url ?>logout.php"
-       style="color:white;font-weight:600;text-decoration:none;">
-        Cerrar sesión
-    </a>
+    <a href="<?= $base_url ?>logout.php">Cerrar sesión</a>
 </div>
 <?php endif; ?>
 
-<nav>
-    <a href="/index.php">Inicio</a>
-    <a href="/mision.php">Misión</a>
-    <a href="/vision.php">Visión</a>
-    <a href="/catalogo.php">Catálogo</a>
-    <a href="/contacto.php">Contacto</a>
+<nav class="navbar">
+    <a href="<?= $base_url ?>index.php">Inicio</a>
+    <a href="<?= $base_url ?>mision.php">Misión</a>
+    <a href="<?= $base_url ?>vision.php">Visión</a>
+    <a href="<?= $base_url ?>catalogo.php">Catálogo</a>
+    <a href="<?= $base_url ?>contacto.php">Contacto</a>
+    <a href="<?= $base_url ?>carrito.php">Carrito</a>
 
     <?php if (tieneRol('admin', 'editor')): ?>
-        <a href="/gestion.php">Gestión de Productos</a>
+        <a href="<?= $base_url ?>gestion.php">Inventario</a>
     <?php endif; ?>
 
     <?php if (tieneRol('admin')): ?>
-        <a href="/gestion_usuarios.php">Usuarios</a>
+        <a href="<?= $base_url ?>gestion_usuarios.php">Usuarios</a>
     <?php endif; ?>
 
-    <?php if (estaAutenticado()): ?>
-        <a href="/logout.php">Cerrar Sesión</a>
-    <?php else: ?>
-        <a href="/login.php">Iniciar Sesión</a>
+    <?php if (!estaAutenticado()): ?>
+        <a href="<?= $base_url ?>login.php">Iniciar Sesión</a>
+        <a href="<?= $base_url ?>registro.php">Registro</a>
     <?php endif; ?>
 </nav>
