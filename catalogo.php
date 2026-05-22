@@ -90,7 +90,19 @@ $libros = $pdo->query(
                             
                             <?php if ($libro['stock'] > 0): ?>
                                 <p class="stock ok">Disponibles: <?= $libro['stock'] ?></p>
-                                <button class="btn-comprar">Agregar al Carrito</button>
+                                <form method="POST" action="agregar_carrito.php">
+
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value="<?= $libro['id'] ?>"
+                                    >
+
+                                    <button class="btn-comprar">
+                                        Agregar al carrito
+                                    </button>
+
+                                </form>
                             <?php else: ?>
                                 <p class="stock agotado">AGOTADO</p>
                                 <button class="btn-comprar" style="background:#bdc3c7; cursor:not-allowed;" disabled>No disponible</button>
