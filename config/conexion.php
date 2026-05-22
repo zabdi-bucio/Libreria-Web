@@ -30,7 +30,7 @@ class Conexion {
         } catch (PDOException $e) {
             error_log('Error de conexión BD: ' . $e->getMessage());
             http_response_code(500);
-            die('Error real BD: ' . $e->getMessage());
+            die(json_encode(['exito' => false, 'mensaje' => 'Error interno del servidor.']));
         }
     }
 
