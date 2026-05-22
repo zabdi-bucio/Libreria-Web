@@ -152,3 +152,16 @@ hr {
         text-align: center;
     }
 }
+
+.carrito-badge {
+    background: #e74c3c;
+    color: white;
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-left: 6px;
+    display: inline-block;
+    min-width: 18px;
+    text-align: center;
+}
